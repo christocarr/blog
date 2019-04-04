@@ -1,7 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-
+const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 const indexRoutes = require('./routes/index');
 
 dotenv.config();
@@ -13,6 +14,10 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
 const app = express();
 
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(flash());
 
 app.use('/', indexRoutes);
 
