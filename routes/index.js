@@ -18,8 +18,7 @@ router.post('/register', async (req, res) => {
   const user = await User.findOne({ username });
   try {
     if (user) {
-      req.flash('error', 'Username is taken')
-      return res.render('register');
+      return res.render('register', {error: 'Username is taken'});
     } else {
       const newUser = new User({
         username,
@@ -32,10 +31,14 @@ router.post('/register', async (req, res) => {
   
     }
   } catch (err) {
-    req.flash('error', 'Something went wrong')
-    return res.render('register');
+    return res.render('register', {error: 'Something went wrong'});
   }
   
+});
+
+router.post('/login', (req, res) => {
+  const {username, password } = req.body;
+    res.render('index');
 });
 
 module.exports = router;
