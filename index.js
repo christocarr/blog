@@ -31,6 +31,8 @@ app.use((req, res, next) => {
   next();
 });
 
+require('./config/passport')(app)
+
 app.use('/', indexRoutes);
 
 const PORT = process.env.PORT || 5000
