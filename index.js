@@ -3,8 +3,12 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
-const indexRoutes = require('./routes/index');
 const session = require('express-session');
+
+//routes
+const indexRoutes = require('./routes/index');
+const postRoutes = require('./routes/post')
+
 
 dotenv.config();
 
@@ -36,6 +40,8 @@ app.use((req, res, next) => {
 require('./config/passport')(app)
 
 app.use('/', indexRoutes);
+app.use('/post', postRoutes);
+
 
 const PORT = process.env.PORT || 5000
 
