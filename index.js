@@ -31,13 +31,15 @@ app.use(session({
   saveUninitialized: false
 }));
 
+require('./config/passport')(app)
+
+//middleware
 app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
   res.locals.error = req.flash('error');
   res.locals.success = req.flash('success');
   next();
 });
-
-require('./config/passport')(app)
 
 app.use('/', indexRoutes);
 app.use('/post', postRoutes);

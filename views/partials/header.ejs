@@ -13,23 +13,34 @@
 <body>
   <div class="ui container secondary pointing menu">
     <a href="/" class="ui item">Home</a>
-    <a href="/post/new" class="ui item">Add Post</a>
-    <div class="right menu">
-      <a href="/register" class="ui item">Register</a>
-      <a href="/login" class="ui item">Login</a>
-      <a class="ui item">Logout</a>
-    </div>
+    
+    <% if(!currentUser) { %>
+      <div class="right menu">
+        <a href="/register" class="ui item">Register</a>
+        <a href="/login" class="ui item">Login</a>
+      </div>
+    <% } else { %>
+      <div class="right menu">
+        <a href="/post/new" class="ui item">Add Post</a>
+        <span class="ui item"><%= currentUser.username %></span>
+        <a href="/logout" class="ui item">Logout</a>
+      </div>
+    <% } %>
   </div>
 
   <% if (error && error.length) { %>
-    <div class="ui warning message">
-      <%= error %>
+    <div class="ui container error-message">
+      <div class="ui warning message">
+        <%= error %>
+      </div>
     </div>
   <% } %>
 
   <% if (success && success.length) { %>
-  <div class="ui success message">
-    <%= success %>
-  </div>
+    <div class="ui container success-message">
+      <div class="ui success message">
+        <%= success %>
+      </div>
+    </div>
 <% } %>
  
