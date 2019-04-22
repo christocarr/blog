@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+  <div class="ui container context">
+    <h1 class="ui header"><%= post.title %></h1>
+    <div class="ui container item">
+      <img src="<%= post.image_url %>" alt="post image" />
+      <div class="ui content">
+        <strong><%= post.createdAt.toDateString() %></strong>
+        <div class="description">
+          <%= post.post_content %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% include partials/footer %>
