@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', isOwnerPost, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    return res.render('edit', { post: post });
+    return res.render('editpost', { post: post });
   } catch (err) {
     return res.redirect('/');
   }
