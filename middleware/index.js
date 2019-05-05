@@ -19,7 +19,7 @@ exports.isOwnerPost = async (req, res, next) => {
         req.flash('error', 'Post not found');
         return res.redirect('back');
       } else {
-        if (req.user._id === post.userId) {
+        if (post.userId.equals(req.user._id)) {
           next();
         } else {
           req.flash('error', `You don't have permission`);
